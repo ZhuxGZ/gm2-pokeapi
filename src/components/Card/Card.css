@@ -1,0 +1,15 @@
+.card {
+	width: 25%;
+	height: 10em;
+	border-radius: 10px;
+	background-color: lightgray;
+	transition: background-color linear 0.3s;
+}
+
+.card:hover {
+	background-color: rgba(184, 1, 1, 0.8);
+}
+
+.card h3 {
+	text-align: center;
+}

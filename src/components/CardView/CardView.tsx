@@ -1,30 +1,37 @@
 import './CardView.css';
 import { useEffect, useState } from 'react';
 import { Card } from '..';
-
-interface IPokemons {
+import { filter } from '@chakra-ui/react';
+interface IPokemon {
 	name: string;
 	url: string;
 }
 
-export const CardView = () => {
-	const [pokemons, setPokemons] = useState<IPokemons[]>([]);
+interface ICardViewProps {
+	filterBy: string;
+	index: number;
+}
+
+export const CardView = ({ filterBy, index }: ICardViewProps) => {
+	const [pokemons, setPokemons] = useState<IPokemon[]>([]);
 	useEffect(() => {
-		try {
-			fetch('https://pokeapi.co/api/v2/pokemon?limit=151&offset=0')
-				.then((response) => response.json())
-				.then((data) => setPokemons(data.results));
-		} catch (error) {
-			console.log(Error);
-		}
+		fetch(`https://pokeapi.co/api/v2/pokemon?limit=10000&offset=0`)
+			.then((response) => response.json())
+			.then((data) => setPokemons(data.results));
 	}, []);
+
+	useEffect(() => {
+		if (filterBy !== '') {
+			const filterPokemons = pokemons.filter((pokemon) => pokemon.name.includes(filterBy));
+			setPokemons(filterPokemons);
+		}
+	}, [filterBy]);
 
 	return (
 		<section className="card-view">
-			{pokemons &&
-				pokemons.map((pokemon) => {
-					return <Card name={pokemon.name} />;
-				})}
+			{pokemons.map((pokemon) => {
+				return <Card key={pokemon.url} name={pokemon.name} />;
+			})}
 		</section>
 	);
 };

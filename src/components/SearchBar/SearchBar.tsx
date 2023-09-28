@@ -1,13 +1,13 @@
 import './SearchBar.css';
 
 interface SearchBarProps {
-	getFilter(value: string): void;
+	setSearchText: (value: string) => void;
 }
 
-export const SearchBar = ({ getFilter }: SearchBarProps) => {
+export const SearchBar = ({ setSearchText }: SearchBarProps) => {
 	return (
 		<input
-			onChange={(event) => getFilter(event.target.value)}
+			onChange={(event) => setSearchText(event.target.value ?? '')}
 			className="search-bar"
 			placeholder="Search a pokemon"
 		></input>

@@ -1,15 +1,15 @@
 import './Pokemon.css';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { IPokemon } from '../../assets/types/PokemonType';
+import { IPokemonDetailed } from '../../assets/types/PokemonType';
 import { useParams } from 'react-router-dom';
-import { PokemonStats } from '../../components';
+import { PokemonStats, PokemonTypes } from '../../components';
 
 export const Pokemon = () => {
-	const [pokemonData, setPokemonData] = useState<IPokemon>();
+	const [pokemonData, setPokemonData] = useState<IPokemonDetailed>();
 	const [loading, setLoading] = useState(false);
-
 	const { id } = useParams();
+
 	useEffect(() => {
 		setLoading(true);
 
@@ -27,6 +27,7 @@ export const Pokemon = () => {
 			<Link to={'/'}>Back</Link>
 			<img className="pokemon-image" src={pokemonData.sprites.front_default} alt="" />
 			<h1 className="pokemon-name">{pokemonData.name}</h1>
+			<PokemonTypes types={pokemonData.types} />
 			<PokemonStats stats={pokemonData.stats} />
 		</div>
 	);

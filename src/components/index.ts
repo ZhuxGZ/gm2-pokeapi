@@ -6,3 +6,4 @@ export * from './CardView';
 export * from './SearchBar';
 export * from './AppLayout';
 export * from './PokemonStats';
+export * from './PokemonTypes';

@@ -16,6 +16,7 @@ const COLORS = {
 export const PokemonStats = ({ stats }: IPokemonStatsProps) => {
 	return (
 		<div className="pokemon-stats">
+			<h2>Base Stats</h2>
 			{stats &&
 				stats.map((stat) => {
 					if (stat.stat.name === 'special-attack' || stat.stat.name === 'special-defense')

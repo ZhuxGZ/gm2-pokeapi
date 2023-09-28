@@ -1,3 +1,10 @@
+.pokemon-stats h2 {
+	font-size: 1.5em;
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 1em;
+}
+
 .pokemon-stats .stat {
 	margin: 0.5em;
 	margin-bottom: 0.7em;

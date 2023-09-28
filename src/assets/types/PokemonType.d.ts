@@ -1,4 +1,4 @@
-export interface IPokemon {
+export interface IPokemonDetailed {
 	abilities: Ability[];
 	base_experience: number;
 	forms: Species[];
@@ -174,7 +174,7 @@ export interface IStats {
 	stat: Species;
 }
 
-export interface Type {
+export interface IType {
 	slot: number;
 	type: Species;
 }

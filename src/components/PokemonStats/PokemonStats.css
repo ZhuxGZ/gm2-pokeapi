@@ -1,0 +1,9 @@
+.pokemon-stats .stat {
+	margin: 0.5em;
+	margin-bottom: 0.7em;
+}
+
+.pokemon-stats .stat p {
+	font-weight: bold;
+	text-transform: capitalize;
+}

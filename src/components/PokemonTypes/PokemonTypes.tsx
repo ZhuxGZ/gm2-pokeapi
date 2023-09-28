@@ -7,10 +7,11 @@ interface PokemonTypesProps {
 }
 
 const TYPE_COLORS = {
-	normal: 'grey',
+	normal: 'gray',
 	fire: 'red',
 	water: 'blue',
 	grass: 'green',
+	electric: 'yellow',
 	flying: 'blue',
 };
 

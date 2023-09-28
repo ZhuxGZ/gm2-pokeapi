@@ -1,0 +1,19 @@
+main {
+	display: grid;
+	place-content: center;
+	grid-template-columns: 100%;
+	width: 100%;
+}
+.pokemon-image {
+	justify-self: center;
+	width: 50%;
+}
+
+.pokemon-name {
+	font-size: 40px;
+	text-align: center;
+	font-weight: bold;
+	text-transform: capitalize;
+
+	margin-bottom: 1em;
+}

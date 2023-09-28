@@ -1,9 +1,12 @@
 .pokemon-stats .stat {
 	margin: 0.5em;
 	margin-bottom: 0.7em;
+	display: grid;
+	grid-template-columns: 20% 80%;
+	align-items: center;
 }
 
-.pokemon-stats .stat p {
+.pokemon-stats .stat label {
 	font-weight: bold;
 	text-transform: capitalize;
 }

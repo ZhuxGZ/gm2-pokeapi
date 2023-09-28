@@ -22,7 +22,7 @@ export const PokemonStats = ({ stats }: IPokemonStatsProps) => {
 						return;
 					return (
 						<div key={stat.stat.name} className="stat">
-							<p>{stat.stat.name}</p>
+							<label>{stat.stat.name}</label>
 							<Progress
 								value={stat.base_stat}
 								colorScheme={COLORS[stat.stat.name as keyof typeof COLORS]}

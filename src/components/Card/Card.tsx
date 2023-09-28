@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Card.css';
 interface CardProps {
 	name: string;
@@ -14,9 +15,11 @@ export const Card: React.FC<CardProps> = ({ name }) => {
 	}, [name]);
 
 	return (
-		<div className="card">
-			<img src={image} alt="" />
-			<h3 className="card-name">{name}</h3>
-		</div>
+		<Link to={`/pokemon/${name}`}>
+			<div className="card">
+				<img src={image} alt="" />
+				<h3 className="card-name">{name}</h3>
+			</div>
+		</Link>
 	);
 };

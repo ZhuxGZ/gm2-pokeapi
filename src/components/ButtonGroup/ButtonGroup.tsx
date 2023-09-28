@@ -1,7 +1,7 @@
 import './ButtonGroup.css';
-import { ReactNode, ReactPropTypes } from 'react';
+import { ReactNode } from 'react';
 
-export interface IButtonGroupProps extends ReactPropTypes {
+export interface IButtonGroupProps {
 	children: ReactNode[];
 	position?: string;
 }

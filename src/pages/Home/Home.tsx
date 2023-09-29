@@ -39,6 +39,7 @@ export const Home = () => {
 			</div>
 			<ButtonGroup>
 				<Button handleClick={decrementIndex}>Prev</Button>
+				<Button>{`${index + 1} / ${pageQuantity}`}</Button>
 				<Button handleClick={incrementIndex}>Next</Button>
 			</ButtonGroup>
 			<CardView pokemons={filteredPokemons} index={index} />

@@ -1,10 +1,10 @@
 import './Button.css';
 
-interface IButtonProps {
-	children: string;
+interface ButtonProps {
+	children: string | number;
 	handleClick?(): void;
 }
 
-export const Button: React.FC<IButtonProps> = ({ children, handleClick }) => {
+export const Button: React.FC<ButtonProps> = ({ children, handleClick }) => {
 	return <button onClick={handleClick}>{children}</button>;
 };

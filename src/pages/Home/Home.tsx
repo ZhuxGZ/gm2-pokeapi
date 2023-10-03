@@ -1,14 +1,16 @@
 import { Button, ButtonGroup, CardView, SearchBar } from '../../components';
 import { useState, useEffect } from 'react';
 import { usePageNumber } from '../../context/PageNumberContext';
+import { usePage } from '../../store/pagNumberStore';
+import { observer } from 'mobx-react-lite';
 
 export interface IPokemon {
 	name: string;
 	url: string;
 }
 
-export const Home = () => {
-	const { pageNumber, incrementPageNumber, decrementPageNumber } = usePageNumber();
+export const Home = observer(() => {
+	const { pagNumber, increment, decrement } = usePage();
 	const [pokemons, setPokemons] = useState<IPokemon[]>([]);
 	const [searchText, setSearchText] = useState<string>('');
 	const [pokemonsCount, setPokemonsCount] = useState<number>(0);
@@ -27,10 +29,10 @@ export const Home = () => {
 	const pageQuantity = Math.floor(pokemonsCount / quantityOfCards); //20 is the number of cards per page
 
 	const incrementPagNum = () => {
-		pageNumber === pageQuantity ? pageQuantity : incrementPageNumber();
+		pagNumber === pageQuantity ? pageQuantity : increment();
 	};
 	const decrementPagNum = () => {
-		pageNumber === 0 ? 0 : decrementPageNumber();
+		pagNumber === 0 ? 0 : decrement();
 	};
 
 	return (
@@ -40,10 +42,10 @@ export const Home = () => {
 			</div>
 			<ButtonGroup>
 				<Button handleClick={decrementPagNum}>Prev</Button>
-				<Button>{`${pageNumber + 1} / ${pageQuantity + 1}`}</Button>
+				<Button>{`${pagNumber + 1} / ${pageQuantity + 1}`}</Button>
 				<Button handleClick={incrementPagNum}>Next</Button>
 			</ButtonGroup>
 			<CardView pokemons={filteredPokemons} numOfCards={quantityOfCards} />
 		</>
 	);
-};
+});

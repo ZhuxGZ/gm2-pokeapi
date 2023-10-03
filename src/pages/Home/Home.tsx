@@ -1,6 +1,5 @@
 import { Button, ButtonGroup, CardView, SearchBar } from '../../components';
 import { useState, useEffect } from 'react';
-import { usePageNumber } from '../../context/PageNumberContext';
 import { usePage } from '../../store/pagNumberStore';
 import { observer } from 'mobx-react-lite';
 

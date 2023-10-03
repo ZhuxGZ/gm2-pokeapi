@@ -1,4 +1,4 @@
-import { types } from 'mobx-state-tree';
+import { types, Instance } from 'mobx-state-tree';
 import { createContext, useContext } from 'react';
 
 export const numPageStore = types
@@ -14,5 +14,5 @@ export const numPageStore = types
 		},
 	}));
 
-export const PageContext = createContext();
+export const PageContext = createContext<Instance<typeof numPageStore>>(numPageStore.create({}));
 export const usePage = () => useContext(PageContext);

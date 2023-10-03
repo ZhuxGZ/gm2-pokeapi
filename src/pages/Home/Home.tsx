@@ -1,5 +1,6 @@
 import { Button, ButtonGroup, CardView, SearchBar } from '../../components';
 import { useState, useEffect } from 'react';
+import { usePageNumber } from '../../context/PageNumberContext';
 
 export interface IPokemon {
 	name: string;
@@ -7,29 +8,29 @@ export interface IPokemon {
 }
 
 export const Home = () => {
-	const [index, setIndex] = useState(0);
+	const { pageNumber, incrementPageNumber, decrementPageNumber } = usePageNumber();
 	const [pokemons, setPokemons] = useState<IPokemon[]>([]);
 	const [searchText, setSearchText] = useState<string>('');
 	const [pokemonsCount, setPokemonsCount] = useState<number>(0);
+	const quantityOfCards = 20;
 
 	useEffect(() => {
 		fetch(`https://pokeapi.co/api/v2/pokemon?limit=10000&offset=0`)
 			.then((response) => response.json())
 			.then((data) => {
 				setPokemonsCount(data.count);
-				console.log(data.count);
 				setPokemons(data.results);
 			});
 	}, []);
 
 	const filteredPokemons = pokemons.filter((p) => p.name.includes(searchText));
-	const pageQuantity = Math.floor(pokemonsCount / 20); //20 is the number of cards per page
+	const pageQuantity = Math.floor(pokemonsCount / quantityOfCards); //20 is the number of cards per page
 
-	const incrementIndex = () => {
-		setIndex(index === pageQuantity ? pageQuantity : index + 1);
+	const incrementPagNum = () => {
+		pageNumber === pageQuantity ? pageQuantity : incrementPageNumber();
 	};
-	const decrementIndex = () => {
-		setIndex(index === 0 ? 0 : index - 1);
+	const decrementPagNum = () => {
+		pageNumber === 0 ? 0 : decrementPageNumber();
 	};
 
 	return (
@@ -38,11 +39,11 @@ export const Home = () => {
 				<SearchBar setSearchText={setSearchText} />
 			</div>
 			<ButtonGroup>
-				<Button handleClick={decrementIndex}>Prev</Button>
-				<Button>{`${index + 1} / ${pageQuantity}`}</Button>
-				<Button handleClick={incrementIndex}>Next</Button>
+				<Button handleClick={decrementPagNum}>Prev</Button>
+				<Button>{`${pageNumber + 1} / ${pageQuantity + 1}`}</Button>
+				<Button handleClick={incrementPagNum}>Next</Button>
 			</ButtonGroup>
-			<CardView pokemons={filteredPokemons} index={index} />
+			<CardView pokemons={filteredPokemons} numOfCards={quantityOfCards} />
 		</>
 	);
 };

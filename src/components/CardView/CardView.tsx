@@ -1,17 +1,22 @@
 import './CardView.css';
 import { Card } from '..';
 import { IPokemon } from '../../pages/Home/Home';
+import { usePageNumber } from '../../context/PageNumberContext';
 
 interface ICardViewProps {
 	pokemons: IPokemon[];
-	index: number;
+	numOfCards: number;
 }
 
-export const CardView = ({ index, pokemons }: ICardViewProps) => {
+export const CardView = ({ pokemons, numOfCards }: ICardViewProps) => {
+	const { pageNumber } = usePageNumber();
 	return (
 		<section className="card-view">
 			{pokemons.map((pokemon, pokemonIndex) => {
-				if (pokemonIndex <= (index + 1) * 20 && pokemonIndex >= index * 20)
+				if (
+					pokemonIndex <= (pageNumber + 1) * numOfCards - 1 &&
+					pokemonIndex >= pageNumber * numOfCards
+				)
 					return <Card key={pokemon.url} name={pokemon.name} />;
 			})}
 		</section>
